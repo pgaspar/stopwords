@@ -4,6 +4,12 @@ h2. REALLY JUST A LIST OF STOPWORDS WITH SOME HELPERS
 
 Obviously part of something bigger but worth breaking out for reuse. 
 
+h2. THIS FORK
+
+This fork replaces the original 250 stopwords with 429 from the "Onix Text Retrieval Toolkit":http://www.lextek.com/manuals/onix/stopwords1.html.
+
+Some deprecation errors were also fixed.
+
 h2. USAGE
 
 <pre><code>

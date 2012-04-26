@@ -1,17 +1,14 @@
 require 'rake'
 require 'rubygems'
-require 'rake/gempackagetask'
-require 'spec/rake/spectask'
+require 'rubygems/package_task'
+require 'rspec/core/rake_task'
 
 desc "Run the specs under spec"
-Spec::Rake::SpecTask.new do |t|
-  t.spec_files = FileList['spec/**/*_spec.rb']
-  t.spec_opts << "-c"
-end
+RSpec::Core::RakeTask.new('spec')
 
 spec = Gem::Specification.new do |s|
   s.name = 'stopwords'
-  s.version = '0.2'
+  s.version = '0.2.1'
   s.require_path = 'lib'
   s.description = 'A stopword library'
   s.summary = 'A stopword library'
@@ -19,8 +16,12 @@ spec = Gem::Specification.new do |s|
   s.author = "ENDAX, LLC"
   s.email = "john@endax.com"
   s.homepage = "http://endax.github.com/"
+  s.add_development_dependency 'rspec', '~> 2.5'
+  s.test_files  = Dir.glob("{spec,test}/**/*.rb")
 end
 
-Rake::GemPackageTask.new(spec) do |pkg| 
-  pkg.need_tar = true 
-end 
+
+Gem::PackageTask.new(spec) do |pkg|
+  pkg.gem_spec = spec
+  pkg.need_tar = true
+end
